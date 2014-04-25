@@ -5,7 +5,6 @@ bin
 gen
 out
 local.properties
-build.xml
 gen-external-apklibs/
 example/.classpath
 example/.project
