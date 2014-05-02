@@ -732,22 +732,24 @@ public class IabHelper {
             String packageName = mContext.getPackageName();
             IabResult result = new IabResult(OK);
             try {
-                logDebug("Checking for in-app billing 3 support.");
-                int response = mService.isBillingSupported(API_VERSION, packageName, INAPP.toString());
-                if (response == OK.code) {
-                    logDebug("In-app billing version 3 supported for " + packageName);
-                    mInAppSupported = true;
-                    logDebug("Checking for in-app billing 3 subscription support.");
-                    response = mService.isBillingSupported(API_VERSION, packageName, SUBS.toString());
-                    if (response == OK.code) {
-                        logDebug("Subscriptions AVAILABLE.");
-                        mSubscriptionsSupported = true;
-                    } else {
-                        logDebug("Subscriptions NOT AVAILABLE. Response: " + response + " " + Response.getDescription(response));
-                    }
-                } else {
-                    result = new IabResult(response, null);
-                }
+				logDebug("Checking for in-app billing 3 support.");
+				final int response = mService.isBillingSupported(API_VERSION, packageName, INAPP.toString());
+				if (response == OK.code) {
+					logDebug("In-app billing version 3 supported for " + packageName);
+					mInAppSupported = true;
+				}
+				final int response2 = mService.isBillingSupported(API_VERSION, packageName, SUBS.toString());
+				if (response2 == OK.code) {
+					logDebug("Subscriptions AVAILABLE.");
+					//mSubscriptionsSupported = true;
+					mSubscriptionsSupported = false;
+				}
+
+				if ((!mInAppSupported) && (!mSubscriptionsSupported)) {
+					logDebug("No billing supported  ");
+					result = new IabResult(response, null);
+				}
+                
             } catch (RemoteException e) {
                 result = new IabResult(IABHELPER_REMOTE_EXCEPTION);
                 Log.e(mDebugTag, "RemoteException while setting up in-app billing.", e);

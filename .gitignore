@@ -5,5 +5,8 @@ bin
 gen
 out
 local.properties
-build.xml
 gen-external-apklibs/
+example/.classpath
+example/.project
+example/.settings/org.eclipse.jdt.core.prefs
+example/project.properties
