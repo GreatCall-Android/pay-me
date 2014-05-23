@@ -741,8 +741,7 @@ public class IabHelper {
 				final int response2 = mService.isBillingSupported(API_VERSION, packageName, SUBS.toString());
 				if (response2 == OK.code) {
 					logDebug("Subscriptions AVAILABLE.");
-					//mSubscriptionsSupported = true;
-					mSubscriptionsSupported = false;
+					mSubscriptionsSupported = true;
 				}
 
 				if ((!mInAppSupported) && (!mSubscriptionsSupported)) {
