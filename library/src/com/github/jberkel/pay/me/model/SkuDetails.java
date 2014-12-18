@@ -96,7 +96,7 @@ public class SkuDetails {
     }
 
     /**
-     * @return Value must be â€œinappâ€? for an in-app product or "subs" for subscriptions.
+     * @return Value must be "inapp" for an in-app product or "subs" for subscriptions.
      */
     public String getRawType() {
         return mType;
